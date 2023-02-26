@@ -704,7 +704,7 @@
   #define MPC_BLOCK_HEAT_CAPACITY { 11.37f }           // (J/K) Heat block heat capacities.
   #define MPC_SENSOR_RESPONSIVENESS { 0.0700f }         // (K/s per ∆K) Rate of change of sensor temperature from heat block.
   #define MPC_AMBIENT_XFER_COEFF { 0.0574f }           // (W/K) Heat transfer coefficients from heat block to room air with fan off.
-  #if ENABLED(MPC_INCLUDE_FAN)
+  #if ENABLED(MPC_INCLUDE_FAN) 
     #define MPC_AMBIENT_XFER_COEFF_FAN255 { 0.1001f }  // (W/K) Heat transfer coefficients from heat block to room air with fan on full.
   #endif
 
@@ -2092,7 +2092,7 @@
   //===========================================================================
 
   #define MESH_INSET 10          // Set Mesh bounds as an inset region of the bed
-  #define GRID_MAX_POINTS_X 3    // Don't use more than 7 points per axis, implementation limited.
+  #define GRID_MAX_POINTS_X 4    // Don't use more than 7 points per axis, implementation limited.
   #define GRID_MAX_POINTS_Y GRID_MAX_POINTS_X
 
   //#define MESH_G28_REST_ORIGIN // After homing all axes ('G28' or 'G28 XYZ') rest Z at Z_MIN_POS

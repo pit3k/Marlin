@@ -42,7 +42,7 @@
 //
 // Servos
 //
-#define SERVO0_PIN                            11
+#define SERVO0_PIN                            34
 
 //
 // Limit Switches

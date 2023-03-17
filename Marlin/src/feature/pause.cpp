@@ -353,15 +353,34 @@ bool unload_filament(const_float_t unload_length, const bool show_lcd/*=false*/,
 
   if (show_lcd) ui.pause_show_message(PAUSE_MESSAGE_UNLOAD, mode);
 
-  // Retract filament
-  unscaled_e_move(-(FILAMENT_UNLOAD_PURGE_RETRACT) * mix_multiplier, (PAUSE_PARK_RETRACT_FEEDRATE) * mix_multiplier);
+  if (true) {
 
-  // Wait for filament to cool
-  safe_delay(FILAMENT_UNLOAD_PURGE_DELAY);
+    // Purge
+    unscaled_e_move(FILAMENT_UNLOAD_PURGE_LENGTH * mix_multiplier, FILAMENT_UNLOAD_PURGE_FEEDRATE * mix_multiplier);
 
-  // Quickly purge
-  unscaled_e_move((FILAMENT_UNLOAD_PURGE_RETRACT + FILAMENT_UNLOAD_PURGE_LENGTH) * mix_multiplier,
-                  (FILAMENT_UNLOAD_PURGE_FEEDRATE) * mix_multiplier);
+    // Wait till cold pull temp
+    ui.pause_show_message(PAUSE_MESSAGE_HEATING, mode); UNUSED(mode);
+    thermalManager.setTargetHotend(120, active_extruder);
+    while (ABS(thermalManager.wholeDegHotend(active_extruder) - thermalManager.degTargetHotend(active_extruder)) > (TEMP_WINDOW))
+      idle();
+
+    // Retract filament
+    thermalManager.set_menu_cold_override(true);
+    unscaled_e_move(-(FILAMENT_UNLOAD_PURGE_RETRACT) * mix_multiplier, (PAUSE_PARK_RETRACT_FEEDRATE) * mix_multiplier);
+
+  } else {
+
+    // Retract filament
+    unscaled_e_move(-(FILAMENT_UNLOAD_PURGE_RETRACT) * mix_multiplier, (PAUSE_PARK_RETRACT_FEEDRATE) * mix_multiplier);
+
+    // Wait for filament to cool
+    safe_delay(FILAMENT_UNLOAD_PURGE_DELAY);
+
+    // Quickly purge
+    unscaled_e_move((FILAMENT_UNLOAD_PURGE_RETRACT + FILAMENT_UNLOAD_PURGE_LENGTH) * mix_multiplier,
+                    (FILAMENT_UNLOAD_PURGE_FEEDRATE) * mix_multiplier);
+
+  }
 
   // Unload filament
   #if FILAMENT_CHANGE_UNLOAD_ACCEL > 0
@@ -377,6 +396,8 @@ bool unload_filament(const_float_t unload_length, const bool show_lcd/*=false*/,
 
   // Disable the Extruder for manual change
   disable_active_extruder();
+
+  thermalManager.set_menu_cold_override(false);
 
   return true;
 }

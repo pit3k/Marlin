@@ -84,6 +84,12 @@
 #define E1_DIR_PIN                            47
 #define E1_ENABLE_PIN                         48
 
+// TMC2230 mod
+#define X_CS_PIN                              66
+#define Y_CS_PIN                              67
+#define Z_CS_PIN                              68
+#define E0_CS_PIN                             69
+
 //
 // Temperature Sensors
 //

@@ -1060,7 +1060,7 @@
 #if ENABLED(ASSISTED_TRAMMING)
 
   // Define from 3 to 9 points to probe.
-  #define TRAMMING_POINT_XY { {  15, 35 }, { 185,  35 }, { 185, 185 }, { 15, 185 } }
+  #define TRAMMING_POINT_XY { { 48 , 45 }, { 168, 45 }, { 168, 165 }, { 48, 165 } }
 
   // Define position names for probe points.
   #define TRAMMING_POINT_NAME_1 "Front-Left"
@@ -2212,8 +2212,10 @@
 #if EITHER(MESH_BED_LEVELING, AUTO_BED_LEVELING_UBL)
   // Override the mesh area if the automatic (max) area is too large
   //#define MESH_MIN_X MESH_INSET
+    #define MESH_MIN_X 8
   //#define MESH_MIN_Y MESH_INSET
   //#define MESH_MAX_X X_BED_SIZE - (MESH_INSET)
+    #define MESH_MAX_X X_BED_SIZE - (MESH_MIN_X)
   //#define MESH_MAX_Y Y_BED_SIZE - (MESH_INSET)
 #endif
 

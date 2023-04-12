@@ -102,8 +102,10 @@
 // Heaters / Fans
 //
 #define HEATER_0_PIN                           2
-//#define HEATER_1_PIN                         3 // we use heater1 for controlling case lighting
-#define HEATER_BED_PIN                         4
+//#define HEATER_1_PIN                         3  // we use heater1 for controlling case lighting
+//#define HEATER_BED_PIN                       4   // we use external mosfet instead
+#define HEATER_BED_PIN                         13
+
 
 #ifndef FAN_PIN
   #define FAN_PIN                              7
@@ -113,7 +115,8 @@
 // Misc. Functions
 //
 #define SDSS                                  53
-#define LED_PIN                               13
+//#define LED_PIN                             13
+#define LED_PIN                               4   // we use heater bed mosfet for LED
 #define PS_ON_PIN                             12
 #define SUICIDE_PIN                           54  // PIN that has to be turned on right after start, to keep power flowing.
 

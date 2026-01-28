@@ -43,7 +43,7 @@
 //
 // Servos
 //
-#define SERVO0_PIN                            11
+#define SERVO0_PIN                            34
 
 //
 // Limit Switches
@@ -85,19 +85,28 @@
 #define E1_DIR_PIN                            47
 #define E1_ENABLE_PIN                         48
 
+// TMC2230 mod
+#define X_CS_PIN                              66
+#define Y_CS_PIN                              67
+#define Z_CS_PIN                              68
+#define E0_CS_PIN                             69
+
 //
 // Temperature Sensors
 //
-#define TEMP_0_PIN                             8  // Analog Input
-#define TEMP_1_PIN                             9  // Analog Input
+#define TEMP_0_PIN                             9  // redirected to connector TEMP2, as we use non-thermocouple, which requires pull-up resistor
+//#define TEMP_0_PIN                           8  // Analog Input
+//#define TEMP_1_PIN                           9  // Analog Input
 #define TEMP_BED_PIN                          10  // Analog Input
 
 //
 // Heaters / Fans
 //
 #define HEATER_0_PIN                           2
-#define HEATER_1_PIN                           3
-#define HEATER_BED_PIN                         4
+//#define HEATER_1_PIN                         3  // we use heater1 for controlling case lighting
+//#define HEATER_BED_PIN                       4   // we use external mosfet instead
+#define HEATER_BED_PIN                         8
+
 
 #ifndef FAN0_PIN
   #define FAN0_PIN                             7
@@ -112,7 +121,7 @@
 #define SUICIDE_PIN                           54  // PIN that has to be turned on right after start, to keep power flowing.
 
 #ifndef CASE_LIGHT_PIN
-  #define CASE_LIGHT_PIN                       8
+  #define CASE_LIGHT_PIN                       3
 #endif
 
 //

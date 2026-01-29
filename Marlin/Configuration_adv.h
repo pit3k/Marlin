@@ -3755,15 +3755,16 @@
 #define CUSTOM_MENU_MAIN
 #if ENABLED(CUSTOM_MENU_MAIN)
   #define CUSTOM_MENU_MAIN_TITLE "Custom Commands"
-  #define CUSTOM_MENU_MAIN_SCRIPT_DONE "M117 User Script Done"
+  #define CUSTOM_MENU_MAIN_SCRIPT_DONE "M104 S0\nM117 User Script Done"
   #define CUSTOM_MENU_MAIN_SCRIPT_AUDIBLE_FEEDBACK
-  //#define CUSTOM_MENU_MAIN_SCRIPT_RETURN   // Return to status screen after a script
+  #define CUSTOM_MENU_MAIN_SCRIPT_RETURN   // Return to status screen after a script
   #define CUSTOM_MENU_MAIN_ONLY_IDLE         // Only show custom menu when the machine is idle
 
-  #define MAIN_MENU_ITEM_1_DESC "Cal: Extrude 100mm"
   // E Feed of 48mm/min * PI * 2.25 / 60 = 5.6 mm^3/s / 0.4 / 0.2 = 70mm/s feed (prusaslicer default)
-  #define MAIN_MENU_ITEM_1_GCODE "G28\nG1 X1 Y1 Z100\nM109 S210\nG1 E100 F48" 
-  #define MAIN_MENU_ITEM_1_CONFIRM
+  #define MAIN_MENU_ITEM_1_DESC "Cal: E 100mm PLA"
+  #define MAIN_MENU_ITEM_1_GCODE "G28\nG1 X1 Y1 Z100\nM104 S210\nM109 S210\nM117 Extruding 110mm ...\nG1 E100 F48" 
+  #define MAIN_MENU_ITEM_2_DESC "Cal: E 100mm PET-G"
+  #define MAIN_MENU_ITEM_2_GCODE "G28\nG1 X1 Y1 Z100\nM104 S240\nM109 S240\nM117 Extruding 110mm ...\nG1 E100 F48" 
 
   //#define MAIN_MENU_ITEM_1_DESC "Home & UBL Info"
   //#define MAIN_MENU_ITEM_1_GCODE "G28\nG29 W"
